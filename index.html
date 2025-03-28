@@ -227,6 +227,13 @@
             margin: 0 auto;
         }
 
+        .contact-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
         .contact-form {
             display: flex;
             flex-direction: column;
@@ -245,7 +252,8 @@
         }
 
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             padding: 0.8rem;
             border: 1px solid #ddd;
             border-radius: 5px;
@@ -256,6 +264,22 @@
         .form-group textarea {
             min-height: 150px;
             resize: vertical;
+        }
+
+        .form-group select {
+            background-color: white;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+        }
+
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.1);
         }
 
         .submit-button {
@@ -278,6 +302,170 @@
             margin-bottom: 2rem;
             color: var(--primary-color);
         }
+
+        .jira-section {
+            background-color: var(--background-color);
+            padding: 2rem;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .jira-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .jira-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background-color: #0052CC;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .jira-button:hover {
+            background-color: #0747A6;
+        }
+
+        .jira-button img {
+            width: 24px;
+            height: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-options {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .demo-section {
+            padding: 4rem 0;
+            background-color: var(--background-color);
+        }
+
+        .demo-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+
+        .demo-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .demo-item.reverse {
+            direction: rtl;
+        }
+
+        .demo-item.reverse .demo-content {
+            direction: ltr;
+        }
+
+        .demo-content {
+            padding: 2rem;
+        }
+
+        .demo-content h3 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .demo-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .demo-media {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .demo-media img,
+        .demo-media video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .demo-item {
+                grid-template-columns: 1fr;
+            }
+
+            .demo-item.reverse {
+                direction: ltr;
+            }
+
+            .demo-content {
+                padding: 1rem;
+            }
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 비율 */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        .demo-media {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+
+        .demo-media img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .demo-media img:hover {
+            transform: scale(1.02);
+        }
     </style>
 </head>
 <body>
@@ -286,7 +474,7 @@
             <div class="container">
                 <div class="nav-container">
                     <a href="index.html" class="nav-logo">
-                        <img src="assets/logo.png" alt="Quarrot Logo">
+                        <img src="assets/logo.svg" alt="Quarrot Logo">
                         <span>Quarrot</span>
                     </a>
                     <div class="nav-links">
@@ -328,15 +516,105 @@
             </div>
         </section>
 
+        <section class="demo-section">
+            <div class="container">
+                <h2 class="section-title">주요 기능 소개</h2>
+                <div class="demo-grid">
+                    <div class="demo-item">
+                        <div class="demo-content">
+                            <h3>VBA 코드 관리</h3>
+                            <p>선호하는 IDE에서 VBA 코드를 자유롭게 편집하고 관리할 수 있습니다.</p>
+                            <ul class="feature-list">
+                                <li>VS Code, PyCharm 등 다양한 IDE 지원</li>
+                                <li>Git 버전 관리 통합</li>
+                                <li>코드 자동 완성 및 디버깅</li>
+                            </ul>
+                        </div>
+                        <div class="demo-media">
+                            <img src="assets/demos/vba-editor.gif" alt="VBA 편집기 데모">
+                        </div>
+                    </div>
+                    <div class="demo-item reverse">
+                        <div class="demo-content">
+                            <h3>금융 함수 라이브러리</h3>
+                            <p>복잡한 금융 계산을 쉽고 정확하게 수행할 수 있습니다.</p>
+                            <ul class="feature-list">
+                                <li>커브 Bootstrapping</li>
+                                <li>금리스왑 평가</li>
+                                <li>채권 평가</li>
+                            </ul>
+                        </div>
+                        <div class="demo-media">
+                            <div class="video-container">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/VIDEO_ID" 
+                                    title="금융 함수 라이브러리 데모" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="demo-item">
+                        <div class="demo-content">
+                            <h3>ALM 솔루션</h3>
+                            <p>전문적인 자산-부채 관리 도구를 제공합니다.</p>
+                            <ul class="feature-list">
+                                <li>시나리오 분석</li>
+                                <li>리스크 측정</li>
+                                <li>보고서 생성</li>
+                            </ul>
+                        </div>
+                        <div class="demo-media">
+                            <img src="assets/demos/alm-solution.gif" alt="ALM 솔루션 데모">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="contact-section" id="contact">
             <div class="container">
                 <div class="contact-container">
                     <h2 class="section-title">문의하기</h2>
-                    <form action="https://formsubmit.co/math.ansang@gmail.com" method="POST">
-                        <input type="text" name="name" required>
-                        <input type="email" name="email" required>
-                        <button type="submit">Send</button>
-                   </form>
+                    <div class="contact-options">
+                        <form class="contact-form" action="https://formsubmit.co/math.ansang@gmail.com" method="POST">
+                            <div class="form-group">
+                                <label for="inquiryType">문의 유형</label>
+                                <select id="inquiryType" name="inquiryType" required class="form-select">
+                                    <option value="">문의 유형을 선택해주세요</option>
+                                    <option value="demo">데모 요청</option>
+                                    <option value="technical">기술 지원</option>
+                                    <option value="pricing">가격 문의</option>
+                                    <option value="partnership">파트너십</option>
+                                    <option value="feature">기능 제안</option>
+                                    <option value="other">기타</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">이름/회사</label>
+                                <input type="text" id="name" name="name" required placeholder="이름을 입력해주세요">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">이메일</label>
+                                <input type="email" id="email" name="email" required placeholder="이메일을 입력해주세요">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">메시지</label>
+                                <textarea id="message" name="message" required placeholder="문의 내용을 입력해주세요"></textarea>
+                            </div>
+                            <button type="submit" class="submit-button">보내기</button>
+                        </form>
+                        <div class="jira-section">
+                            <h3>자세한 문의</h3>
+                            <p>기술적인 문의나 버그 리포트는 Jira를 통해 제출해주세요.</p>
+                            <a href="https://ahnmath.atlassian.net/servicedesk/customer/portals" target="_blank" class="jira-button">
+                                <img src="assets/jira-icon.svg" alt="Jira Icon">
+                                Jira로 문의하기
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
