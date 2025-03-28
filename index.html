@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quarrot - 사용자 친화적인 웹 프로그램</title>
+    <title>Quarrot - 금융 전문가를 위한 엑셀 애드인</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <style>
         :root {
             --primary-color: #2c3e50;
@@ -35,12 +36,13 @@
             background-color: var(--primary-color);
             color: white;
             padding: 2rem 0;
-            text-align: center;
         }
 
         .hero {
             padding: 4rem 0;
             text-align: center;
+            background-color: var(--primary-color);
+            color: white;
         }
 
         .hero h1 {
@@ -98,52 +100,307 @@
             padding: 2rem 0;
             margin-top: 4rem;
         }
+
+        .download-section {
+            background-color: #fff;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .version-tag {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+        }
+
+        .download-options {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .download-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .download-button:hover {
+            background-color: #34495e;
+        }
+
+        .github-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            margin-top: 1rem;
+            display: inline-block;
+        }
+
+        .github-link:hover {
+            text-decoration: underline;
+        }
+
+        .nav-menu {
+            background-color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        .nav-logo img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .nav-logo span {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background-color: var(--background-color);
+            color: var(--primary-color);
+        }
+
+        .nav-link.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+
+        .contact-section {
+            padding: 4rem 0;
+            background-color: white;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background-color: #34495e;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Quarrot</h1>
-            <p>사용자 친화적인 웹 프로그램</p>
-        </div>
-    </header>
-
-    <section class="hero">
-        <div class="container">
-            <h1>더 나은 웹 경험을 시작하세요</h1>
-            <p>Quarrot과 함께라면 웹 작업이 더욱 효율적이고 즐거워집니다.</p>
-            <a href="#" class="cta-button">지금 시작하기</a>
-        </div>
-    </section>
-
-    <section class="features">
-        <div class="container">
-            <h2>주요 특징</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>🚀 빠른 성능</h3>
-                    <p>최적화된 코드로 빠른 실행 속도를 제공합니다.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>💻 직관적인 인터페이스</h3>
-                    <p>사용하기 쉬운 인터페이스로 누구나 쉽게 사용할 수 있습니다.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🔒 안전한 데이터 처리</h3>
-                    <p>최신 보안 기술로 데이터를 안전하게 보호합니다.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🌐 크로스 플랫폼</h3>
-                    <p>모든 주요 운영체제에서 실행 가능합니다.</p>
+    <div id="app">
+        <nav class="nav-menu">
+            <div class="container">
+                <div class="nav-container">
+                    <a href="index.html" class="nav-logo">
+                        <img src="assets/logo.png" alt="Quarrot Logo">
+                        <span>Quarrot</span>
+                    </a>
+                    <div class="nav-links">
+                        <a href="index.html" class="nav-link" :class="{ active: currentPage === 'home' }">홈</a>
+                        <a href="blog.html" class="nav-link" :class="{ active: currentPage === 'blog' }">블로그</a>
+                        <a href="#" class="nav-link" :class="{ active: currentPage === 'docs' }">문서</a>
+                        <a href="#" class="nav-link" :class="{ active: currentPage === 'pricing' }">가격</a>
+                        <a href="#contact" class="nav-link" :class="{ active: currentPage === 'contact' }">문의하기</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </nav>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Quarrot. All rights reserved.</p>
-        </div>
-    </footer>
+        <section class="hero">
+            <div class="container">
+                <h1>금융 업무의 효율성을 높이세요</h1>
+                <p>Quarrot과 함께라면 복잡한 금융 계산과 VBA 코드 관리가 더욱 쉬워집니다.</p>
+                <span class="version-tag">{{ version }}</span>
+                <div class="download-options">
+                    <a :href="downloadUrl" class="download-button">
+                        💾 다운로드
+                    </a>
+                </div>
+                <a :href="githubUrl" class="github-link" target="_blank">
+                    GitHub 저장소 방문하기 →
+                </a>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2>주요 기능</h2>
+                <div class="features-grid">
+                    <div v-for="feature in features" :key="feature.title" class="feature-card">
+                        <h3>{{ feature.icon }} {{ feature.title }}</h3>
+                        <p>{{ feature.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section" id="contact">
+            <div class="container">
+                <div class="contact-container">
+                    <h2 class="section-title">문의하기</h2>
+                    <form class="contact-form" @submit.prevent="submitForm">
+                        <div class="form-group">
+                            <label for="email">이메일</label>
+                            <input type="email" id="email" v-model="form.email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">메시지</label>
+                            <textarea id="message" v-model="form.message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">보내기</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>&copy; {{ currentYear }} Quarrot. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    currentPage: 'home',
+                    version: 'v1.0.0',
+                    downloadUrl: 'https://github.com/quarrot/excel-addin/releases/download/v1.0.0/Quarrot-Excel-Addin-v1.0.0.xlam',
+                    githubUrl: 'https://github.com/quarrot/excel-addin',
+                    currentYear: new Date().getFullYear(),
+                    features: [
+                        {
+                            icon: '📝',
+                            title: '외부 VBA 편집기',
+                            description: 'VBA 코드를 선호하는 IDE에서 자유롭게 편집하고 관리할 수 있습니다.'
+                        },
+                        {
+                            icon: '📊',
+                            title: '금융 함수 라이브러리',
+                            description: '커브 Bootstrapping, 금리스왑 평가, 채권 평가 등 다양한 금융 계산 함수를 제공합니다.'
+                        },
+                        {
+                            icon: '💼',
+                            title: 'ALM 솔루션',
+                            description: '은행, 보험사, 자산운용사를 위한 전문적인 ALM 도구를 제공합니다.'
+                        },
+                        {
+                            icon: '🔄',
+                            title: '시장 데이터',
+                            description: '시장 데이터 연동으로 정확한 금융 계산이 가능합니다.'
+                        }
+                    ],
+                    form: {
+                        email: '',
+                        message: ''
+                    }
+                }
+            },
+            methods: {
+                submitForm() {
+                    // 폼 제출 로직
+                    console.log('Form submitted:', this.form)
+                    // 여기에 실제 폼 제출 로직 추가
+                }
+            }
+        }).mount('#app')
+    </script>
 </body>
 </html> 
