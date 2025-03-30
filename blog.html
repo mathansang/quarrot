@@ -5,236 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quarrot Blog - 금융 전문가를 위한 블로그</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --text-color: #333;
-            --background-color: #f5f6fa;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--background-color);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-        }
-
-        .blog-container {
-            display: flex;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .blog-list {
-            flex: 1;
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .blog-content {
-            flex: 2;
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .blog-item {
-            padding: 1rem;
-            border-bottom: 1px solid #eee;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .blog-item:hover {
-            background-color: var(--background-color);
-        }
-
-        .blog-item h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .blog-item .date {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .loading, .error, .no-posts {
-            text-align: center;
-            padding: 2rem;
-            color: #666;
-        }
-
-        .error {
-            color: #e74c3c;
-        }
-
-        .blog-content img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .home-link {
-            color: white;
-            text-decoration: none;
-            margin-top: 1rem;
-            display: inline-block;
-        }
-
-        .home-link:hover {
-            text-decoration: underline;
-        }
-
-        /* 마크다운 스타일 */
-        .markdown-body {
-            line-height: 1.6;
-        }
-
-        .markdown-body h1 {
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        .markdown-body h2 {
-            margin: 1.5rem 0 1rem;
-            color: var(--primary-color);
-        }
-
-        .markdown-body p {
-            margin-bottom: 1rem;
-        }
-
-        .markdown-body code {
-            background-color: #f8f9fa;
-            padding: 0.2rem 0.4rem;
-            border-radius: 3px;
-        }
-
-        .markdown-body pre {
-            background-color: #f8f9fa;
-            padding: 1rem;
-            border-radius: 5px;
-            overflow-x: auto;
-            margin: 1rem 0;
-        }
-
-        .nav-menu {
-            background-color: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            color: var(--primary-color);
-        }
-
-        .nav-logo img {
-            width: 32px;
-            height: 32px;
-        }
-
-        .nav-logo span {
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-link {
-            color: var(--text-color);
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-link:hover {
-            background-color: var(--background-color);
-            color: var(--primary-color);
-        }
-
-        .nav-link.active {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .nav-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <div id="app">
-        <header>
-            <div class="container">
-                <h1>Quarrot Blog</h1>
-                <p>금융 전문가를 위한 블로그</p>
-            </div>
-        </header>
-
         <nav class="nav-menu">
             <div class="container">
                 <div class="nav-container">
                     <a href="index.html" class="nav-logo">
-                        <img src="assets/logo.png" alt="Quarrot Logo">
+                        <img src="assets/logo.svg" alt="Quarrot Logo">
                         <span>Quarrot</span>
                     </a>
                     <div class="nav-links">
-                        <a href="index.html" class="nav-link">홈</a>
-                        <a href="blog.html" class="nav-link active">블로그</a>
-                        <a href="#" class="nav-link">문서</a>
-                        <a href="https://github.com/quarrot/excel-addin" class="nav-link">GitHub</a>
-                        <a href="#" class="nav-link">가격</a>
+                        <a href="index.html" class="nav-link" :class="{ active: currentPage === 'home' }">홈</a>
+                        <a href="blog.html" class="nav-link" :class="{ active: currentPage === 'blog' }">블로그</a>
+                        <a href="https://github.com/mathansang/quarrot/wiki" class="nav-link" :class="{ active: currentPage === 'docs' }">문서</a>
+                        <a href="index.html#contact" class="nav-link" :class="{ active: currentPage === 'contact' }">문의하기</a>
                     </div>
                 </div>
             </div>
         </nav>
+
+        <section class="hero">
+            <div class="container">
+                <h1>Quarrot Blog</h1>
+                <p>금융 전문가를 위한 블로그</p>
+            </div>
+        </section>
 
         <div class="container">
             <div class="blog-container">
@@ -262,6 +59,13 @@
                 </div>
             </div>
         </div>
+
+        <footer>
+            <div class="container">
+                <p>&copy; {{ currentYear }} Quarrot. All rights reserved.</p>
+                <p>Email - <a href="mailto:math.ansang@gmail.com" style="color: white; text-decoration: none;">math.ansang@gmail.com</a></p>
+            </div>
+        </footer>
     </div>
 
     <script src="js/blog.js"></script>

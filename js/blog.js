@@ -8,6 +8,8 @@ createApp({
         const selectedPost = ref(null);
         const selectedPostLoading = ref(false);
         const selectedPostError = ref(null);
+        const currentPage = ref('blog');
+        const currentYear = ref(new Date().getFullYear());
 
         const renderedContent = computed(() => {
             if (!selectedPost.value) return '';
@@ -67,7 +69,9 @@ createApp({
             selectedPostError,
             renderedContent,
             formatDate,
-            selectPost
+            selectPost,
+            currentPage,
+            currentYear
         };
     }
 }).mount('#app'); 
